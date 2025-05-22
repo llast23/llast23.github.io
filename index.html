@@ -2,22 +2,31 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cuide da Sua Horta</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cuide da Sua Horta 🌿 - Criativo e Interativo</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    /* Reset e básico */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #f0fff0;
       color: #2E7D32;
       line-height: 1.6;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, color 0.3s ease;
+      min-height: 100vh;
+      padding-bottom: 60px;
+      position: relative;
     }
     header, footer {
       background-color: #4CAF50;
       color: white;
       text-align: center;
       padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
     nav {
       background-color: #388E3C;
@@ -25,81 +34,262 @@
       flex-wrap: wrap;
       justify-content: center;
       padding: 10px;
+      gap: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
     nav a {
       color: white;
-      margin: 5px 15px;
       text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: background-color 0.3s, color 0.3s;
     }
     nav a:hover {
-      color: #C8E6C9;
+      background-color: #66bb6a;
+      color: #204020;
     }
+
     main {
-      padding: 20px;
       max-width: 900px;
-      margin: auto;
+      margin: 20px auto;
+      padding: 0 15px;
     }
+
     section {
-      margin-bottom: 40px;
       background: #ffffffdd;
-      padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 10px #c8e6c9;
+      padding: 20px;
+      margin-bottom: 40px;
+      transition: transform 0.3s ease;
     }
-    h2 {
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px #a3d8a1;
+    }
+
+    h1, h2 {
       color: #2E7D32;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
+
     ul {
       padding-left: 20px;
+      margin-bottom: 15px;
     }
+
+    /* Botão modo claro/escuro */
+    #toggleTheme {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      transition: background-color 0.3s;
+      z-index: 1000;
+    }
+    #toggleTheme:hover {
+      background-color: #45A049;
+    }
+
+    /* Dark mode */
+    body.dark-mode {
+      background-color: #121212;
+      color: #eee;
+    }
+    body.dark-mode header, 
+    body.dark-mode footer {
+      background-color: #222;
+      box-shadow: none;
+    }
+    body.dark-mode nav {
+      background-color: #333;
+      box-shadow: none;
+    }
+    body.dark-mode nav a {
+      color: #ddd;
+    }
+    body.dark-mode nav a:hover {
+      background-color: #66bb6a;
+      color: #121;
+    }
+    body.dark-mode section {
+      background: #222a2222;
+      box-shadow: 0 0 15px #3e7a3e88;
+    }
+    body.dark-mode #toggleTheme {
+      background-color: #66bb6a;
+      color: #121;
+    }
+    body.dark-mode #toggleTheme:hover {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    /* Formulário */
     form {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
     }
-    input, textarea, button {
+    input, textarea {
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 5px;
       font-size: 1rem;
+      transition: border-color 0.3s;
+      resize: vertical;
+    }
+    input:focus, textarea:focus {
+      border-color: #4CAF50;
+      outline: none;
     }
     button {
+      width: 140px;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-weight: 700;
       background-color: #4CAF50;
       color: white;
-      border: none;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: background-color 0.3s;
+      align-self: flex-start;
     }
     button:hover {
       background-color: #45A049;
     }
+
+    /* FAQ acordeão */
+    .faq-item {
+      border-bottom: 1px solid #4CAF50;
+      padding: 10px 0;
+    }
+    .faq-question {
+      cursor: pointer;
+      font-weight: 700;
+      position: relative;
+      padding-right: 20px;
+    }
+    .faq-question::after {
+      content: '+';
+      position: absolute;
+      right: 0;
+      font-weight: 700;
+      font-size: 1.4rem;
+      transition: transform 0.3s ease;
+    }
+    .faq-question.active::after {
+      content: '-';
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      margin-top: 6px;
+      color: #3a3a3a;
+    }
+    body.dark-mode .faq-answer {
+      color: #ccc;
+    }
+    .faq-answer.open {
+      max-height: 500px; /* bem maior que o conteúdo */
+    }
+
+    /* Botão voltar ao topo */
+    #btnTop {
+      position: fixed;
+      bottom: 40px;
+      right: 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      display: none;
+      z-index: 999;
+      transition: background-color 0.3s;
+    }
+    #btnTop:hover {
+      background-color: #45A049;
+    }
+
+    /* Checklist interativo */
+    .checklist label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 6px 0;
+      user-select: none;
+      color: #2E7D32;
+      transition: color 0.3s;
+    }
+    .checklist input[type="checkbox"] {
+      transform: scale(1.3);
+      cursor: pointer;
+    }
+    .checklist input[type="checkbox"]:checked + span {
+      text-decoration: line-through;
+      color: #7a7a7a;
+    }
+    body.dark-mode .checklist label {
+      color: #eee;
+    }
+    body.dark-mode .checklist input[type="checkbox"]:checked + span {
+      color: #999;
+    }
+
+    /* Responsivo */
     @media (max-width: 600px) {
-      nav { flex-direction: column; }
-      nav a { margin: 8px 0; font-size: 1.1rem; }
+      nav {
+        flex-direction: column;
+        gap: 8px;
+      }
+      nav a {
+        font-size: 1.1rem;
+      }
+      #toggleTheme {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
 <body>
+
+  <button id="toggleTheme" aria-label="Alternar modo claro/escuro">Modo Escuro</button>
 
   <header>
     <h1>Como Cuidar da Sua Horta 🌿</h1>
     <p>Dicas práticas para cultivar em casa com amor e responsabilidade</p>
   </header>
 
-  <nav>
+  <nav aria-label="Menu principal">
     <a href="#preparo">Preparo</a>
     <a href="#plantio">Plantio</a>
     <a href="#cuidados">Cuidados</a>
     <a href="#dicas">Extras</a>
+    <a href="#faq">FAQ</a>
+    <a href="#checklist">Checklist</a>
     <a href="#contato">Contato</a>
-    <a href="plantas-faceis.html">Plantas Fáceis</a>
+    <a href="plantas-faceis.html" target="_blank" rel="noopener noreferrer">Plantas Fáceis</a>
   </nav>
 
   <main>
-    <section id="preparo">
+
+    <section id="preparo" tabindex="0">
       <h2>Preparo do Solo</h2>
       <p>Antes de plantar, prepare bem o solo:</p>
       <ul>
@@ -110,7 +300,7 @@
       </ul>
     </section>
 
-    <section id="plantio">
+    <section id="plantio" tabindex="0">
       <h2>Plantio</h2>
       <p>Agora que o solo está pronto, siga essas orientações:</p>
       <ul>
@@ -121,7 +311,7 @@
       </ul>
     </section>
 
-    <section id="cuidados">
+    <section id="cuidados" tabindex="0">
       <h2>Cuidados Diários</h2>
       <ul>
         <li>Regue regularmente, sem encharcar.</li>
@@ -131,8 +321,9 @@
       </ul>
     </section>
 
-    <section id="dicas">
+    <section id="dicas" tabindex="0">
       <h2>Dicas Extras</h2>
+      <p><strong>Dica do dia:</strong> <span id="dicaDia" aria-live="polite"></span></p>
       <ul>
         <li>Use cascas de banana e café como fertilizante natural.</li>
         <li>Plante hortelã em vasos para espantar formigas.</li>
@@ -141,29 +332,137 @@
       </ul>
     </section>
 
-    <section id="contato">
+    <section id="faq" tabindex="0" aria-label="Perguntas frequentes">
+      <h2>FAQ - Perguntas Frequentes</h2>
+      <div class="faq-item">
+        <div class="faq-question" tabindex="0" role="button" aria-expanded="false" aria-controls="faq1a" id="faq1q">Como saber se o solo está pronto para plantar?</div>
+        <div class="faq-answer" id="faq1a" role="region" aria-labelledby="faq1q">O solo deve estar fofo, úmido e livre de pedras e ervas daninhas para garantir o melhor crescimento das plantas.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" tabindex="0" role="button" aria-expanded="false" aria-controls="faq2a" id="faq2q">Qual a melhor hora para regar a horta?</div>
+        <div class="faq-answer" id="faq2a" role="region" aria-labelledby="faq2q">Os horários mais frescos, preferencialmente no início da manhã ou final da tarde, para evitar evaporação rápida.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" tabindex="0" role="button" aria-expanded="false" aria-controls="faq3a" id="faq3q">Posso usar fertilizantes naturais?</div>
+        <div class="faq-answer" id="faq3a" role="region" aria-labelledby="faq3q">Sim! Cascas de banana, borra de café e composto orgânico são ótimas opções naturais.</div>
+      </div>
+    </section>
+
+    <section id="checklist" tabindex="0">
+      <h2>Checklist para sua Horta</h2>
+      <form class="checklist" aria-label="Lista de tarefas para cuidar da horta">
+        <label><input type="checkbox" /> Preparar o solo</label>
+        <label><input type="checkbox" /> Plantar sementes ou mudas</label>
+        <label><input type="checkbox" /> Regar regularmente</label>
+        <label><input type="checkbox" /> Verificar pragas e doenças</label>
+        <label><input type="checkbox" /> Fazer podas leves</label>
+        <label><input type="checkbox" /> Rotacionar culturas</label>
+        <label><input type="checkbox" /> Fazer compostagem</label>
+      </form>
+    </section>
+
+    <section id="contato" tabindex="0">
       <h2>Fale com a gente</h2>
-      <form>
+      <form id="contactForm" aria-label="Formulário de contato">
         <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required />
+        <input type="text" id="nome" name="nome" required aria-required="true" />
 
         <label for="mensagem">Mensagem:</label>
-        <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+        <textarea id="mensagem" name="mensagem" rows="4" required aria-required="true"></textarea>
 
         <button type="submit">Enviar</button>
       </form>
+      <p id="formFeedback" role="alert" style="margin-top:10px;"></p>
     </section>
+
   </main>
+
+  <button id="btnTop" aria-label="Voltar ao topo">&#8679;</button>
 
   <footer>
     <p>🌱 Site criado com carinho para quem ama cultivar. Inspire-se e plante com amor!</p>
   </footer>
 
   <script>
-    const form = document.querySelector('form');
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
-      alert('Obrigado por entrar em contato! Responderemos em breve.');
+    // Toggle Dark Mode
+    const toggleBtn = document.getElementById('toggleTheme');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      toggleBtn.textContent = document.body.classList.contains('dark-mode') ? 'Modo Claro' : 'Modo Escuro';
+    });
+
+    // Dicas rotativas
+    const dicas = [
+      "Use cascas de ovo trituradas para afastar lesmas.",
+      "Regue sua horta preferencialmente no início da manhã.",
+      "Misture folhas secas no composto para enriquecer o solo.",
+      "Plante flores que atraem abelhas para ajudar na polinização."
+    ];
+    const dicaDiaEl = document.getElementById('dicaDia');
+    let dicaIndex = 0;
+    function mudarDica() {
+      dicaDiaEl.textContent = dicas[dicaIndex];
+      dicaIndex = (dicaIndex + 1) % dicas.length;
+    }
+    mudarDica();
+    setInterval(mudarDica, 10000);
+
+    // FAQ acordeão
+    const faqs = document.querySelectorAll('.faq-question');
+    faqs.forEach(q => {
+      q.addEventListener('click', () => toggleFaq(q));
+      q.addEventListener('keypress', e => {
+        if(e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleFaq(q);
+        }
+      });
+    });
+    function toggleFaq(element) {
+      const expanded = element.getAttribute('aria-expanded') === 'true';
+      element.setAttribute('aria-expanded', !expanded);
+      const answer = document.getElementById(element.getAttribute('aria-controls'));
+      if (!expanded) {
+        answer.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + "px";
+      } else {
+        answer.classList.remove('open');
+        answer.style.maxHeight = null;
+      }
+    }
+
+    // Botão voltar ao topo
+    const btnTop = document.getElementById('btnTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        btnTop.style.display = 'block';
+      } else {
+        btnTop.style.display = 'none';
+      }
+    });
+    btnTop.addEventListener('click', () => {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+
+    // Formulário contato com validação simples e feedback
+    const form = document.getElementById('contactForm');
+    const feedback = document.getElementById('formFeedback');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const nome = form.nome.value.trim();
+      const mensagem = form.mensagem.value.trim();
+      if(nome.length < 2) {
+        feedback.textContent = 'Por favor, insira um nome válido.';
+        feedback.style.color = 'red';
+        return;
+      }
+      if(mensagem.length < 5) {
+        feedback.textContent = 'Mensagem muito curta.';
+        feedback.style.color = 'red';
+        return;
+      }
+      feedback.textContent = 'Mensagem enviada com sucesso! Obrigado :)';
+      feedback.style.color = 'green';
       form.reset();
     });
   </script>
