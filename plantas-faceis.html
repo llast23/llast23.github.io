@@ -3,48 +3,126 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Plantas Fáceis de Cultivar</title>
+  <title>Plantas Fáceis para sua Horta</title>
   <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: Arial, sans-serif;
-      background: #f9fff9;
-      padding: 20px;
+      background: #f0fff0;
       color: #2E7D32;
+      line-height: 1.6;
+      transition: background 0.3s ease;
     }
-    h1 {
-      color: #4CAF50;
+    header, footer {
+      background-color: #4CAF50;
+      color: white;
       text-align: center;
+      padding: 20px;
+    }
+    nav {
+      background-color: #388E3C;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 10px;
+    }
+    nav a {
+      color: white;
+      margin: 5px 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #C8E6C9;
+    }
+    main {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    section {
+      margin-bottom: 40px;
+      background: #ffffffdd;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #c8e6c9;
+    }
+    h2 {
+      color: #2E7D32;
+      margin-bottom: 10px;
     }
     ul {
-      list-style: square;
       padding-left: 20px;
     }
-    li {
-      margin-bottom: 8px;
-    }
-    a {
-      display: block;
-      margin-top: 30px;
-      text-align: center;
-      color: #388E3C;
-      font-weight: bold;
+    a.home-link {
+      display: inline-block;
+      margin-top: 10px;
+      background-color: #4CAF50;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 5px;
       text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    a.home-link:hover {
+      background-color: #45A049;
+    }
+    @media (max-width: 600px) {
+      nav { flex-direction: column; }
+      nav a { margin: 8px 0; font-size: 1.1rem; }
     }
   </style>
 </head>
 <body>
-  <h1>Plantas Fáceis de Cultivar 🌾</h1>
-  <p>Essas plantas são ideais para quem está começando sua horta:</p>
-  <ul>
-    <li>🌿 <strong>Cebolinha</strong> – Ideal para temperos, cresce rápido.</li>
-    <li>🥬 <strong>Alface</strong> – Requer solo bem drenado e rega frequente.</li>
-    <li>🌱 <strong>Rúcula</strong> – Crescimento rápido, colheita em 20 a 30 dias.</li>
-    <li>🍅 <strong>Tomate-cereja</strong> – Pode ser plantado em vasos grandes.</li>
-    <li>🌼 <strong>Manjericão</strong> – Precisa de sol e rega diária no verão.</li>
-    <li>🌾 <strong>Salsinha</strong> – Cresce bem o ano todo, em canteiros ou vasos.</li>
-    <li>🌿 <strong>Hortelã</strong> – Plante separada, pois se espalha com facilidade.</li>
-  </ul>
 
-  <a href="index.html">⬅ Voltar para a página inicial</a>
+  <header>
+    <h1>Plantas Fáceis para sua Horta 🌱</h1>
+    <p>Conheça algumas plantas ideais para iniciantes</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="#ervas">Ervas</a>
+    <a href="#verduras">Verduras</a>
+    <a href="#temperos">Temperos</a>
+  </nav>
+
+  <main>
+    <section id="ervas">
+      <h2>Ervas</h2>
+      <ul>
+        <li><strong>Hortelã:</strong> Cresce rápido e ajuda a espantar formigas.</li>
+        <li><strong>Manjericão:</strong> Ideal para climas quentes e fáceis de cuidar.</li>
+        <li><strong>Salsa:</strong> Planta versátil, muito usada na culinária.</li>
+      </ul>
+    </section>
+
+    <section id="verduras">
+      <h2>Verduras</h2>
+      <ul>
+        <li><strong>Alface:</strong> Crescimento rápido e não exige muito espaço.</li>
+        <li><strong>Rúcula:</strong> Fácil cultivo e sabor marcante.</li>
+        <li><strong>Espinafre:</strong> Rico em nutrientes e resistente.</li>
+      </ul>
+    </section>
+
+    <section id="temperos">
+      <h2>Temperos</h2>
+      <ul>
+        <li><strong>Cebolinha:</strong> Muito usada para finalizar pratos.</li>
+        <li><strong>Coentro:</strong> Excelente para quem gosta de sabores intensos.</li>
+        <li><strong>Tomilho:</strong> Resistente e aromático.</li>
+      </ul>
+    </section>
+
+    <a href="index.html" class="home-link">← Voltar para Início</a>
+  </main>
+
+  <footer>
+    <p>🌱 Site criado com carinho para quem ama cultivar. Inspire-se e plante com amor!</p>
+  </footer>
+
 </body>
 </html>
